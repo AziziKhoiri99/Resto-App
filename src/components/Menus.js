@@ -1,10 +1,28 @@
 import React from "react";
-import { Col, Card, Button } from "react-bootstrap";
 import { numberWithCommas } from "../utils/utils";
 
 const Menus = ({ menu, masukKeranjang }) => {
   return (
-    <Col md={4} xs={6} className="mb-4">
+    <div class="box-container">
+      <div class="box">
+        <span class="price">Rp. {numberWithCommas(menu.harga)}</span>
+        <img src={
+          "assets/images/" +
+          menu.category.nama.toLowerCase() +
+          "/" +
+          menu.gambar
+        } alt="" />
+        <h3>{menu.nama}</h3>
+        <div class="stars">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="far fa-star"></i>
+        </div>
+        <a class="btn" onClick={() => masukKeranjang(menu)}>order now</a>
+      </div>
+      {/* <Col md={4} xs={6} className="mb-4">
       <Card className="shadow">
         <Card.Img
           variant="top"
@@ -21,7 +39,8 @@ const Menus = ({ menu, masukKeranjang }) => {
           <Button variant="primary" onClick={() => masukKeranjang(menu)}>Tambah Pesanan</Button>
         </Card.Body>
       </Card>
-    </Col>
+    </Col> */}
+    </div>
   );
 };
 

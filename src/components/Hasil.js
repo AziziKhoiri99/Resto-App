@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import { Badge, Card, Col, ListGroup, Row } from "react-bootstrap";
 import { numberWithCommas } from "../utils/utils";
-import ModalKeranjang from "./ModalKeranjang";
 import TotalBayar from "./TotalBayar";
 import { API_URL } from "../utils/constants";
 import axios from "axios";
 import swal from "sweetalert";
+import { List, ListItem, ListItemText } from '@mui/material';
+
 
 export default class Hasil extends Component {
   constructor(props) {
@@ -20,6 +20,11 @@ export default class Hasil extends Component {
       keranjangs: [],
     };
   }
+
+  back = e => {
+    e.preventDefault();
+    this.props.prevStep();
+  };
 
   handleShow = (menuKeranjang) => {
     this.setState({
@@ -76,6 +81,7 @@ export default class Hasil extends Component {
     axios
       .put(API_URL + "keranjangs/" + this.state.keranjangDetail.id, data)
       .then((res) => {
+        this.getListKeranjang();
         swal({
           title: "Update Pesanan!",
           text: "Sukses Update Pesanan " + data.product.nama,
@@ -95,6 +101,8 @@ export default class Hasil extends Component {
     axios
       .delete(API_URL + "keranjangs/" + id)
       .then((res) => {
+        this.getListKeranjang();
+
         swal({
           title: "Hapus Pesanan!",
           text:
@@ -131,18 +139,16 @@ export default class Hasil extends Component {
       });
   }
 
-  componentDidUpdate(prevState) {
-    if (this.state.keranjangs !== prevState.keranjangs) {
-      axios
-        .get(API_URL + "keranjangs")
-        .then((res) => {
-          const keranjangs = res.data;
-          this.setState({ keranjangs });
-        })
-        .catch((error) => {
-          console.log("Error yaa ", error);
-        });
-    }
+  getListKeranjang = () => {
+    axios
+      .get(API_URL + "keranjangs")
+      .then((res) => {
+        const keranjangs = res.data;
+        this.setState({ keranjangs });
+      })
+      .catch((error) => {
+        console.log("Error yaa ", error);
+      });
   }
 
   changeCategory = (value) => {
@@ -176,6 +182,8 @@ export default class Hasil extends Component {
           axios
             .post(API_URL + "keranjangs", keranjang)
             .then((res) => {
+              this.getListKeranjang();
+
               swal({
                 title: "Sukses Masuk Keranjang",
                 text: "Sukses Masuk Keranjang " + keranjang.product.nama,
@@ -217,47 +225,66 @@ export default class Hasil extends Component {
 
   render() {
     const keranjangs = this.state.keranjangs;
+    const {
+      values: { firstName, lastName, email }
+    } = this.props;
     return (
-      <div className="container-xxl mt-5">
+      <div className="container-xxl x">
         <h4>
           <strong className="text-center">Daftar Pesanan</strong>
         </h4>
-        {keranjangs.length !== 0 && (
-          <Card className="overflow-auto">
-            <table class="table">
-              <thead>
-                <tr>
-                  <th scope="col">No</th>
-                  <th scope="col">Pesanan</th>
-                  <th scope="col">Jumlah</th>
-                  <th scope="col">Harga</th>
-                  <th scope="col">Total Harga</th>
-                </tr>
-              </thead>
-              <tbody>
-                {keranjangs.map((menuKeranjang, index) => (
-                  <tr key={menuKeranjang.id} onClick={() => this.handleShow(menuKeranjang)}>
-                    <th scope="row">{index + 1}</th>
-                    <td>{menuKeranjang.product.nama}</td>
-                    <td>{menuKeranjang.jumlah}</td>
-                    <td>Rp. {numberWithCommas(menuKeranjang.product.harga)}</td>
-                    <td>{numberWithCommas(menuKeranjang.total_harga)}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-            <ModalKeranjang
-              handleClose={this.handleClose}
-              {...this.state}
-              tambah={this.tambah}
-              kurang={this.kurang}
-              changeHandler={this.changeHandler}
-              handleSubmit={this.handleSubmit}
-              hapusPesanan={this.hapusPesanan}
-            />
-            {/* <TotalBayar keranjangs={keranjangs} {...this.props} /> */}
-          </Card>
-        )}
+        <section class="order" id="order">
+
+          <h1 class="heading"> <span>order</span> now </h1>
+
+          <div class="row">
+            {keranjangs.length !== 0 && (
+              <>
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col">No</th>
+                      <th scope="col">Pesanan</th>
+                      <th scope="col">Jumlah</th>
+                      <th scope="col">Harga</th>
+                      <th scope="col">Total Harga</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {keranjangs.map((menuKeranjang, index) => (
+                      <tr key={menuKeranjang.id} onClick={() => this.handleShow(menuKeranjang)}>
+                        <th scope="row">{index + 1}</th>
+                        <td>{menuKeranjang.product.nama}</td>
+                        <td>{menuKeranjang.jumlah}</td>
+                        <td>Rp. {numberWithCommas(menuKeranjang.product.harga)}</td>
+                        <td>{numberWithCommas(menuKeranjang.total_harga)}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+                <form action="">
+                  <List>
+                    <ListItem>
+                      <ListItemText primary="First Name" secondary={firstName} />
+                    </ListItem>
+                    <ListItem>
+                      <ListItemText primary="Last Name" secondary={lastName} />
+                    </ListItem>
+                    <ListItem>
+                      <ListItemText primary="Email" secondary={email} />
+                    </ListItem>
+                  </List>
+
+                  <input type="submit" value="Back" class="btn" onClick={this.back} />
+                  <TotalBayar keranjangs={keranjangs} {...this.props} />
+
+                </form>
+              </>
+            )}
+
+          </div>
+
+        </section>
       </div>
     );
   }

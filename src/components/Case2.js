@@ -1,8 +1,5 @@
 import React, { Component } from "react";
-import { Badge, Card, Col, ListGroup, Row } from "react-bootstrap";
 import { numberWithCommas } from "../utils/utils";
-import ModalKeranjang from "./ModalKeranjang";
-import TotalBayar from "./TotalBayar";
 import { API_URL } from "../utils/constants";
 import axios from "axios";
 import swal from "sweetalert";
@@ -21,92 +18,14 @@ export default class Case2 extends Component {
         };
     }
 
-    handleShow = (menuKeranjang) => {
-        this.setState({
-            showModal: true,
-            keranjangDetail: menuKeranjang,
-            jumlah: menuKeranjang.jumlah,
-            keterangan: menuKeranjang.keterangan,
-            totalHarga: menuKeranjang.total_harga,
-        });
+    continue = e => {
+        e.preventDefault();
+        this.props.nextStep();
     };
 
-    handleClose = () => {
-        this.setState({
-            showModal: false,
-        });
-    };
-
-    tambah = () => {
-        this.setState({
-            jumlah: this.state.jumlah + 1,
-            totalHarga:
-                this.state.keranjangDetail.product.harga * (this.state.jumlah + 1),
-        });
-    };
-
-    kurang = () => {
-        if (this.state.jumlah !== 1) {
-            this.setState({
-                jumlah: this.state.jumlah - 1,
-                totalHarga:
-                    this.state.keranjangDetail.product.harga * (this.state.jumlah - 1),
-            });
-        }
-    };
-
-    changeHandler = (event) => {
-        this.setState({
-            keterangan: event.target.value,
-        });
-    };
-
-    handleSubmit = (event) => {
-        event.preventDefault();
-
-        this.handleClose();
-
-        const data = {
-            jumlah: this.state.jumlah,
-            total_harga: this.state.totalHarga,
-            product: this.state.keranjangDetail.product,
-            keterangan: this.state.keterangan,
-        };
-
-        axios
-            .put(API_URL + "keranjangs/" + this.state.keranjangDetail.id, data)
-            .then((res) => {
-                swal({
-                    title: "Update Pesanan!",
-                    text: "Sukses Update Pesanan " + data.product.nama,
-                    icon: "success",
-                    button: false,
-                    timer: 1500,
-                });
-            })
-            .catch((error) => {
-                console.log("Error yaa ", error);
-            });
-    };
-
-    hapusPesanan = (id) => {
-        this.handleClose();
-
-        axios
-            .delete(API_URL + "keranjangs/" + id)
-            .then((res) => {
-                swal({
-                    title: "Hapus Pesanan!",
-                    text:
-                        "Sukses Hapus Pesanan " + this.state.keranjangDetail.product.nama,
-                    icon: "error",
-                    button: false,
-                    timer: 1500,
-                });
-            })
-            .catch((error) => {
-                console.log("Error yaa ", error);
-            });
+    back = e => {
+        e.preventDefault();
+        this.props.prevStep();
     };
 
     componentDidMount() {
@@ -131,18 +50,16 @@ export default class Case2 extends Component {
             });
     }
 
-    componentDidUpdate(prevState) {
-        if (this.state.keranjangs !== prevState.keranjangs) {
-            axios
-                .get(API_URL + "keranjangs")
-                .then((res) => {
-                    const keranjangs = res.data;
-                    this.setState({ keranjangs });
-                })
-                .catch((error) => {
-                    console.log("Error yaa ", error);
-                });
-        }
+    getListKeranjang = () => {
+        axios
+            .get(API_URL + "keranjangs")
+            .then((res) => {
+                const keranjangs = res.data;
+                this.setState({ keranjangs });
+            })
+            .catch((error) => {
+                console.log("Error yaa ", error);
+            });
     }
 
     changeCategory = (value) => {
@@ -176,6 +93,8 @@ export default class Case2 extends Component {
                     axios
                         .post(API_URL + "keranjangs", keranjang)
                         .then((res) => {
+                            this.getListKeranjang();
+
                             swal({
                                 title: "Sukses Masuk Keranjang",
                                 text: "Sukses Masuk Keranjang " + keranjang.product.nama,
@@ -217,15 +136,19 @@ export default class Case2 extends Component {
 
     render() {
         const keranjangs = this.state.keranjangs;
+        const { values, handleChange } = this.props;
         return (
-            <div className="container-xxl mt-5">
-                {keranjangs.length !== 0 && (
-                    <Card className="overflow-auto ">
-                        <div class="row g-3">
-                            <div class="col-md-6">
-                                <h4>
-                                    <strong className="text-center">Daftar Pesanan</strong>
-                                </h4>
+            <div className="container-xxl x">
+                <h4>
+                    <strong className="text-center">Daftar Pesanan</strong>
+                </h4>
+                <section class="order" id="order">
+
+                    <h1 class="heading"> <span>order</span> now </h1>
+
+                    <div class="row">
+                        {keranjangs.length !== 0 && (
+                            <>
                                 <table class="table">
                                     <thead>
                                         <tr>
@@ -238,7 +161,7 @@ export default class Case2 extends Component {
                                     </thead>
                                     <tbody>
                                         {keranjangs.map((menuKeranjang, index) => (
-                                            <tr key={menuKeranjang.id} >
+                                            <tr key={menuKeranjang.id} onClick={() => this.handleShow(menuKeranjang)}>
                                                 <th scope="row">{index + 1}</th>
                                                 <td>{menuKeranjang.product.nama}</td>
                                                 <td>{menuKeranjang.jumlah}</td>
@@ -248,34 +171,26 @@ export default class Case2 extends Component {
                                         ))}
                                     </tbody>
                                 </table>
-                            </div>
-                            <div class="col-md-6">
-                                <form>
-                                    <h4>
-                                        <strong className="text-center">Detail Pesanan</strong>
-                                    </h4>
-                                    <div class="mb-3">
-                                        <label for="exampleInputEmail1" class="form-label">Nama :</label><br />
-                                        <label for="exampleInputEmail1" class="form-label">Nama</label>
+                                <form action="">
+                                    <div class="inputBox">
+                                        <input type="text" placeholder="first name" onChange={handleChange('firstName')}
+                                            defaultValue={values.firstName} />
+                                        <input type="text" placeholder="last name" onChange={handleChange('lastName')}
+                                            defaultValue={values.lastName} />
                                     </div>
-                                    <div class="mb-3">
-                                        <label for="exampleInputPassword1" class="form-label">No.Meja :</label><br />
-                                        <label for="exampleInputPassword1" class="form-label">No.Meja</label>
-                                    </div>
+                                    <textarea placeholder="email" name="" id="" cols="30" rows="10"
+                                        onChange={handleChange('email')}
+                                        defaultValue={values.email}>
 
-                                    <h4>
-                                        <strong className="text-center">Informasi Tambahan</strong>
-                                    </h4>
-                                    <div class="mb-3">
-                                        <label for="exampleInputEmail1" class="form-label">Catatan :</label><br />
-                                        <label for="exampleInputEmail1" class="form-label">Catatan</label>
-                                    </div>
+                                    </textarea>
+                                    <input type="submit" value="Back" class="btn" onClick={this.back}
+                                    />&nbsp;
+                                    <input type="submit" value="Next" class="btn" onClick={this.continue} />
                                 </form>
-                            </div>
-                        </div>
-                        <TotalBayar keranjangs={keranjangs} {...this.props} />
-                    </Card>
-                )}
+                            </>
+                        )}
+                    </div>
+                </section>
             </div>
         );
     }

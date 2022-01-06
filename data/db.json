@@ -16,11 +16,11 @@
   "products": [
     {
       "id": 1,
-      "kode": "K-01",
-      "nama": "Sate Ayam",
-      "harga": 16000,
+      "kode": "Dengan Daging Wagyu A5 Di Iris Secara Teratur Menggunakan Taburan  Bumbu yang bukan maen",
+      "nama": "Steak",
+      "harga": 1900000,
       "is_ready": true,
-      "gambar": "sate-ayam.jpg",
+      "gambar": "Steak.jpg",
       "category": {
         "id": 1,
         "nama": "Makanan"
@@ -28,11 +28,11 @@
     },
     {
       "id": 2,
-      "kode": "K-02",
-      "nama": "Nasi Goreng Telur",
-      "harga": 14000,
+      "kode": "Lobster Laut Yang Sulit Di Dapatkan Dan Daging Nya yang Premium Membuat Harga Lobster Ini setara dengan Gajimu Selama Sebulan ",
+      "nama": "Lobster",
+      "harga": 3500000,
       "is_ready": true,
-      "gambar": "nasi-goreng-telor.jpg",
+      "gambar": "Lobster.jpg",
       "category": {
         "id": 1,
         "nama": "Makanan"
@@ -40,11 +40,11 @@
     },
     {
       "id": 3,
-      "kode": "K-03",
-      "nama": "Nasi Rames",
-      "harga": 12000,
+      "kode": "Telur Ikan Premium Dari Ikan Caviar Yang Sangat Langka dan Terjaga Kemurnian nya",
+      "nama": "Caviar",
+      "harga": 1500000,
       "is_ready": true,
-      "gambar": "nasi-rames.jpg",
+      "gambar": "Caviar.jpg",
       "category": {
         "id": 1,
         "nama": "Makanan"
@@ -52,11 +52,11 @@
     },
     {
       "id": 4,
-      "kode": "K-04",
-      "nama": "Lontong Opor Ayam",
-      "harga": 18000,
+      "kode": "Dengan Tampilan Yang Tidak Biasa Pizza Ini Menggunakan Emas 24 Karat Sebagai Toping Tentu Bisa Dimakan",
+      "nama": "Pizza Premium GOLD",
+      "harga": 1800000,
       "is_ready": true,
-      "gambar": "lontong-opor-ayam.jpg",
+      "gambar": "Pizza.jpg",
       "category": {
         "id": 1,
         "nama": "Makanan"
@@ -64,11 +64,11 @@
     },
     {
       "id": 5,
-      "kode": "K-05",
-      "nama": "Mie Goreng",
-      "harga": 13000,
+      "kode": "Tumbuh Membutuhkan Waktu 3-4 Tahun Dan Perlu Ektra Ketelitian Membuat Jamur Ini Layak Sebagai Hidangan Termewah Di Menu ",
+      "nama": "Truffle",
+      "harga": 1300000,
       "is_ready": true,
-      "gambar": "mie-goreng.jpg",
+      "gambar": "Truffle.jpg",
       "category": {
         "id": 1,
         "nama": "Makanan"
@@ -76,11 +76,11 @@
     },
     {
       "id": 6,
-      "kode": "K-06",
-      "nama": "Bakso",
-      "harga": 10000,
+      "kode": "Menggunakan Asli 1000% Daging Sapi Kobe yang Di Import langsung Dari Peternakan Hyogo, Jepang",
+      "nama": "Bakso daging sapi Kobe",
+      "harga": 2400000,
       "is_ready": true,
-      "gambar": "bakso.jpg",
+      "gambar": "Bakso.jpg",
       "category": {
         "id": 1,
         "nama": "Makanan"
@@ -88,23 +88,23 @@
     },
     {
       "id": 7,
-      "kode": "K-07",
-      "nama": "Mie Ayam Bakso",
-      "harga": 14000,
+      "kode": "Kue Black Forest Dari Jerman Dengan Menggunakan Bahan Bahan Kelas Premiumn",
+      "nama": "Black Forest Cake",
+      "harga": 400000,
       "is_ready": true,
-      "gambar": "mie-ayam-bakso.jpg",
+      "gambar": "Black.jpg",
       "category": {
-        "id": 1,
-        "nama": "Makanan"
+        "id": 3,
+        "nama": "Cemilan"
       }
     },
     {
       "id": 8,
-      "kode": "K-08",
-      "nama": "Pangsit 6 pcs",
-      "harga": 5000,
+      "kode": "Rasa Yang Sangat Sangat Enak Bak Terombang Ambing Di Laut Padahal Sedang Di Angkasa Bagitulah Sensasi Rasa Nya",
+      "nama": "Brownies US",
+      "harga": 320000,
       "is_ready": true,
-      "gambar": "pangsit.jpg",
+      "gambar": "Brownies.jpg",
       "category": {
         "id": 3,
         "nama": "Cemilan"
@@ -112,11 +112,11 @@
     },
     {
       "id": 9,
-      "kode": "K-09",
-      "nama": "Kentang Goreng",
-      "harga": 5000,
+      "kode": "Pavlova berupa meringue, kue yang terbuat dari adonan putih telur yang dikocok hingga mengembang. Makanan ini disajikan dengan whipped cream dan taburan buah segar.",
+      "nama": "Pavlova",
+      "harga": 375000,
       "is_ready": true,
-      "gambar": "kentang-goreng.jpg",
+      "gambar": "Pavlova.jpg",
       "category": {
         "id": 3,
         "nama": "Cemilan"
@@ -124,23 +124,23 @@
     },
     {
       "id": 10,
-      "kode": "K-010",
-      "nama": "Cheese Burger",
-      "harga": 15000,
+      "kode": "Campuran Antara Manis Segar Nya Jus Jeruk Dan Lemon Membuat Minuman Ini Sangat Segar",
+      "nama": "Sangria",
+      "harga": 120000,
       "is_ready": true,
-      "gambar": "cheese-burger.jpg",
+      "gambar": "Sangria.jpg",
       "category": {
-        "id": 3,
-        "nama": "Cemilan"
+        "id": 2,
+        "nama": "Minuman"
       }
     },
     {
       "id": 11,
-      "kode": "K-011",
-      "nama": "Coffe Late",
-      "harga": 15000,
+      "kode": "Eggnog atau egg nog adalah minuman manis dari kuning telur yang dikocok ditambah air dan gula atau susu.",
+      "nama": "Eggnog",
+      "harga": 140000,
       "is_ready": true,
-      "gambar": "coffe-late.jpg",
+      "gambar": "Eggnog.jpg",
       "category": {
         "id": 2,
         "nama": "Minuman"
@@ -148,35 +148,11 @@
     },
     {
       "id": 12,
-      "kode": "K-012",
-      "nama": "Es Jeruk",
-      "harga": 7000,
-      "is_ready": true,
-      "gambar": "es-jeruk.jpg",
-      "category": {
-        "id": 2,
-        "nama": "Minuman"
-      }
-    },
-    {
-      "id": 13,
-      "kode": "K-013",
-      "nama": "Es Teh",
+      "kode": "Dengan Manis Nya Gula Aren 10000% Asli Dan Ketan kelapa 10000% Asli Cendol Mantab",
+      "nama": "Cendol",
       "harga": 5000,
       "is_ready": true,
-      "gambar": "es-teh.jpg",
-      "category": {
-        "id": 2,
-        "nama": "Minuman"
-      }
-    },
-    {
-      "id": 14,
-      "kode": "K-014",
-      "nama": "Teh Hangat",
-      "harga": 3000,
-      "is_ready": true,
-      "gambar": "teh-hangat.jpg",
+      "gambar": "Cendol.jpg",
       "category": {
         "id": 2,
         "nama": "Minuman"
@@ -185,95 +161,60 @@
   ],
   "keranjangs": [
     {
-      "jumlah": 2,
-      "total_harga": 32000,
+      "jumlah": 1,
+      "total_harga": 1900000,
       "product": {
         "id": 1,
-        "kode": "K-01",
-        "nama": "Sate Ayam",
-        "harga": 16000,
+        "kode": "Dengan Daging Wagyu A5 Di Iris Secara Teratur Menggunakan Taburan  Bumbu yang bukan maen",
+        "nama": "Steak",
+        "harga": 1900000,
         "is_ready": true,
-        "gambar": "sate-ayam.jpg",
+        "gambar": "Steak.jpg",
         "category": {
           "id": 1,
           "nama": "Makanan"
         }
       },
       "id": 1
-    },
-    {
-      "jumlah": 1,
-      "total_harga": 14000,
-      "product": {
-        "id": 2,
-        "kode": "K-02",
-        "nama": "Nasi Goreng Telur",
-        "harga": 14000,
-        "is_ready": true,
-        "gambar": "nasi-goreng-telor.jpg",
-        "category": {
-          "id": 1,
-          "nama": "Makanan"
-        }
-      },
-      "id": 2
     }
   ],
   "pesanans": [
     {
-      "total_bayar": 60000,
+      "total_bayar": 7600000,
       "menus": [
         {
-          "jumlah": 2,
-          "total_harga": 32000,
+          "jumlah": 4,
+          "total_harga": 7600000,
           "product": {
             "id": 1,
-            "kode": "K-01",
-            "nama": "Sate Ayam",
-            "harga": 16000,
+            "kode": "Dengan Daging Wagyu A5 Di Iris Secara Teratur Menggunakan Taburan  Bumbu yang bukan maen",
+            "nama": "Steak",
+            "harga": 1900000,
             "is_ready": true,
-            "gambar": "sate-ayam.jpg",
+            "gambar": "Steak.jpg",
             "category": {
               "id": 1,
               "nama": "Makanan"
             }
           },
-          "keterangan": "Semuanya Pedas",
           "id": 1
-        },
-        {
-          "jumlah": 2,
-          "total_harga": 28000,
-          "product": {
-            "id": 2,
-            "kode": "K-02",
-            "nama": "Nasi Goreng Telur",
-            "harga": 14000,
-            "is_ready": true,
-            "gambar": "nasi-goreng-telor.jpg",
-            "category": {
-              "id": 1,
-              "nama": "Makanan"
-            }
-          },
-          "id": 3
         }
       ],
       "id": 1
     },
     {
-      "total_bayar": 10000,
+      "total_bayar": 7600000,
       "menus": [
         {
-          "jumlah": 1,
-          "total_harga": 10000,
+          "jumlah": 4,
+          "total_harga": 7600000,
           "product": {
-            "id": 6,
-            "kode": "K-06",
-            "nama": "Bakso",
-            "harga": 10000,
+            "id": 1,
+            "kode": "Dengan Daging Wagyu A5 Di Iris Secara Teratur Menggunakan Taburan  Bumbu yang bukan maen",
+            "nama": "Steak",
+            "harga": 1900000,
             "is_ready": true,
-            "gambar": "bakso.jpg",
+            "gambar": "Steak.jpg",
             "category": {
               "id": 1,
               "nama": "Makanan"
@@ -283,6 +224,121 @@
         }
       ],
       "id": 2
+    },
+    {
+      "total_bayar": 1900000,
+      "menus": [
+        {
+          "jumlah": 1,
+          "total_harga": 1900000,
+          "product": {
+            "id": 1,
+            "kode": "Dengan Daging Wagyu A5 Di Iris Secara Teratur Menggunakan Taburan  Bumbu yang bukan maen",
+            "nama": "Steak",
+            "harga": 1900000,
+            "is_ready": true,
+            "gambar": "Steak.jpg",
+            "category": {
+              "id": 1,
+              "nama": "Makanan"
+            }
+          },
+          "id": 1
+        }
+      ],
+      "id": 3
+    },
+    {
+      "total_bayar": 1900000,
+      "menus": [
+        {
+          "jumlah": 1,
+          "total_harga": 1900000,
+          "product": {
+            "id": 1,
+            "kode": "Dengan Daging Wagyu A5 Di Iris Secara Teratur Menggunakan Taburan  Bumbu yang bukan maen",
+            "nama": "Steak",
+            "harga": 1900000,
+            "is_ready": true,
+            "gambar": "Steak.jpg",
+            "category": {
+              "id": 1,
+              "nama": "Makanan"
+            }
+          },
+          "id": 1
+        }
+      ],
+      "id": 4
+    },
+    {
+      "total_bayar": 1900000,
+      "menus": [
+        {
+          "jumlah": 1,
+          "total_harga": 1900000,
+          "product": {
+            "id": 1,
+            "kode": "Dengan Daging Wagyu A5 Di Iris Secara Teratur Menggunakan Taburan  Bumbu yang bukan maen",
+            "nama": "Steak",
+            "harga": 1900000,
+            "is_ready": true,
+            "gambar": "Steak.jpg",
+            "category": {
+              "id": 1,
+              "nama": "Makanan"
+            }
+          },
+          "id": 1
+        }
+      ],
+      "id": 5
+    },
+    {
+      "total_bayar": 1900000,
+      "menus": [
+        {
+          "jumlah": 1,
+          "total_harga": 1900000,
+          "product": {
+            "id": 1,
+            "kode": "Dengan Daging Wagyu A5 Di Iris Secara Teratur Menggunakan Taburan  Bumbu yang bukan maen",
+            "nama": "Steak",
+            "harga": 1900000,
+            "is_ready": true,
+            "gambar": "Steak.jpg",
+            "category": {
+              "id": 1,
+              "nama": "Makanan"
+            }
+          },
+          "id": 1
+        }
+      ],
+      "id": 6
+    },
+    {
+      "total_bayar": 1900000,
+      "menus": [
+        {
+          "jumlah": 1,
+          "total_harga": 1900000,
+          "product": {
+            "id": 1,
+            "kode": "Dengan Daging Wagyu A5 Di Iris Secara Teratur Menggunakan Taburan  Bumbu yang bukan maen",
+            "nama": "Steak",
+            "harga": 1900000,
+            "is_ready": true,
+            "gambar": "Steak.jpg",
+            "category": {
+              "id": 1,
+              "nama": "Makanan"
+            }
+          },
+          "id": 1
+        }
+      ],
+      "id": 7
     }
   ]
 }

@@ -1,9 +1,10 @@
 import React, { Component } from "react";
-import { Row, Container, Carousel } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import { ListCategories, Menus } from "../components";
 import { API_URL } from "../utils/constants";
 import axios from "axios";
 import swal from "sweetalert";
+import home from '../components/images/home-img.png';
 
 export default class Home extends Component {
   constructor(props) {
@@ -26,6 +27,24 @@ export default class Home extends Component {
         console.log("Error yaa ", error);
       });
 
+    this.getListKeranjang();
+  }
+
+  // componentDidUpdate(prevState) {
+  //   if (this.state.keranjangs !== prevState.keranjangs) {
+  //     axios
+  //       .get(API_URL + "keranjangs")
+  //       .then((res) => {
+  //         const keranjangs = res.data;
+  //         this.setState({ keranjangs });
+  //       })
+  //       .catch((error) => {
+  //         console.log("Error yaa ", error);
+  //       });
+  //   }
+  // }
+
+  getListKeranjang = () => {
     axios
       .get(API_URL + "keranjangs")
       .then((res) => {
@@ -35,20 +54,6 @@ export default class Home extends Component {
       .catch((error) => {
         console.log("Error yaa ", error);
       });
-  }
-
-  componentDidUpdate(prevState) {
-    if (this.state.keranjangs !== prevState.keranjangs) {
-      axios
-        .get(API_URL + "keranjangs")
-        .then((res) => {
-          const keranjangs = res.data;
-          this.setState({ keranjangs });
-        })
-        .catch((error) => {
-          console.log("Error yaa ", error);
-        });
-    }
   }
 
   changeCategory = (value) => {
@@ -82,6 +87,7 @@ export default class Home extends Component {
           axios
             .post(API_URL + "keranjangs", keranjang)
             .then((res) => {
+              this.getListKeranjang();
               swal({
                 title: "Sukses Masuk Keranjang",
                 text: "Sukses Masuk Keranjang " + keranjang.product.nama,
@@ -124,56 +130,31 @@ export default class Home extends Component {
   render() {
     const { menus, categoriYangDipilih, keranjangs } = this.state;
     return (
-      <div className="container-xxl mt-5">
-        <Carousel fade>
-          <Carousel.Item>
-            <img
-              className="d-block w-100"
-              src="https://images.yourstory.com/cs/7/1da9ec3014cc11e9a1b2b928167b6c62/foodcombisthumbnail-1584018621252.png"
-              alt="First slide"
-            />
-            <Carousel.Caption>
-              <h3>First slide label</h3>
-              <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-            </Carousel.Caption>
-          </Carousel.Item>
-          <Carousel.Item>
-            <img
-              className="d-block w-100"
-              src="https://www.welltodoglobal.com/wp-content/uploads/2019/07/Content-covers-1.jpg"
-              alt="Second slide"
-            />
+      <div className="container-xxl">
+        <section class="home" id="home">
 
-            <Carousel.Caption>
-              <h3>Second slide label</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            </Carousel.Caption>
-          </Carousel.Item>
-          <Carousel.Item>
-            <img
-              className="d-block w-100"
-              src="https://kitchenofindonesia.com/wp-content/uploads/elementor/thumbs/sup-odeng-pdpzspyihupv893sop4lkh1rc62sqlhjihf1n7cucg.jpg"
-              alt="Third slide"
-            />
+          <div class="content">
+            <h3>food made with love</h3>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptas accusamus tempore temporibus rem amet
+              laudantium animi optio voluptatum. Natus obcaecati unde porro nostrum ipsam itaque impedit incidunt rem
+              quisquam eos!</p>
+            <a href="/#" class="btn">order now</a>
+          </div>
 
-            <Carousel.Caption>
-              <h3>Third slide label</h3>
-              <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-            </Carousel.Caption>
-          </Carousel.Item>
-        </Carousel>
+          <div class="image">
+            <img src={home} alt="" />
+          </div>
+
+        </section>
         <Container fluid>
           <ListCategories
             changeCategory={this.changeCategory}
             categoriYangDipilih={categoriYangDipilih}
             className="mt-5"
           />
-          <div className="mt-5">
-            <h4>
-              <strong>Daftar Produk</strong>
-            </h4>
-            <hr />
-            <Row>
+          <section class="popular" id="popular">
+            <h1 class="heading"> most <span>popular</span> foods </h1>
+            <div class="row row-cols-1 row-cols-md-3 g-4">
               {menus &&
                 menus.map((menu) => (
                   <Menus
@@ -182,8 +163,8 @@ export default class Home extends Component {
                     masukKeranjang={this.masukKeranjang}
                   />
                 ))}
-            </Row>
-          </div>
+            </div>
+          </section>
         </Container>
       </div>
     );

@@ -1,13 +1,12 @@
 import React, { Component } from "react";
-import { Badge, Card, Col, ListGroup, Row } from "react-bootstrap";
 import { numberWithCommas } from "../utils/utils";
 import ModalKeranjang from "./ModalKeranjang";
-import TotalBayar from "./TotalBayar";
 import { API_URL } from "../utils/constants";
 import axios from "axios";
 import swal from "sweetalert";
 
-export default class Case1 extends Component {
+
+export default class Hasil extends Component {
     constructor(props) {
         super(props);
 
@@ -16,12 +15,15 @@ export default class Case1 extends Component {
             keranjangDetail: false,
             jumlah: 0,
             keterangan: "",
-            nama: "",
-            no: "",
             totalHarga: 0,
             keranjangs: [],
         };
     }
+
+    continue = e => {
+        e.preventDefault();
+        this.props.nextStep();
+    };
 
     handleShow = (menuKeranjang) => {
         this.setState({
@@ -29,8 +31,6 @@ export default class Case1 extends Component {
             keranjangDetail: menuKeranjang,
             jumlah: menuKeranjang.jumlah,
             keterangan: menuKeranjang.keterangan,
-            nama: menuKeranjang.nama,
-            no: menuKeranjang.no,
             totalHarga: menuKeranjang.total_harga,
         });
     };
@@ -75,13 +75,12 @@ export default class Case1 extends Component {
             total_harga: this.state.totalHarga,
             product: this.state.keranjangDetail.product,
             keterangan: this.state.keterangan,
-            nama: this.state.nama,
-            no: this.state.no,
         };
 
         axios
             .put(API_URL + "keranjangs/" + this.state.keranjangDetail.id, data)
             .then((res) => {
+                this.getListKeranjang();
                 swal({
                     title: "Update Pesanan!",
                     text: "Sukses Update Pesanan " + data.product.nama,
@@ -101,6 +100,8 @@ export default class Case1 extends Component {
         axios
             .delete(API_URL + "keranjangs/" + id)
             .then((res) => {
+                this.getListKeranjang();
+
                 swal({
                     title: "Hapus Pesanan!",
                     text:
@@ -137,18 +138,30 @@ export default class Case1 extends Component {
             });
     }
 
-    componentDidUpdate(prevState) {
-        if (this.state.keranjangs !== prevState.keranjangs) {
-            axios
-                .get(API_URL + "keranjangs")
-                .then((res) => {
-                    const keranjangs = res.data;
-                    this.setState({ keranjangs });
-                })
-                .catch((error) => {
-                    console.log("Error yaa ", error);
-                });
-        }
+    // componentDidUpdate(prevState) {
+    //   if (this.state.keranjangs !== prevState.keranjangs) {
+    //     axios
+    //       .get(API_URL + "keranjangs")
+    //       .then((res) => {
+    //         const keranjangs = res.data;
+    //         this.setState({ keranjangs });
+    //       })
+    //       .catch((error) => {
+    //         console.log("Error yaa ", error);
+    //       });
+    //   }
+    // }
+
+    getListKeranjang = () => {
+        axios
+            .get(API_URL + "keranjangs")
+            .then((res) => {
+                const keranjangs = res.data;
+                this.setState({ keranjangs });
+            })
+            .catch((error) => {
+                console.log("Error yaa ", error);
+            });
     }
 
     changeCategory = (value) => {
@@ -182,6 +195,8 @@ export default class Case1 extends Component {
                     axios
                         .post(API_URL + "keranjangs", keranjang)
                         .then((res) => {
+                            this.getListKeranjang();
+
                             swal({
                                 title: "Sukses Masuk Keranjang",
                                 text: "Sukses Masuk Keranjang " + keranjang.product.nama,
@@ -224,14 +239,17 @@ export default class Case1 extends Component {
     render() {
         const keranjangs = this.state.keranjangs;
         return (
-            <div className="container-xxl mt-5">
-                {keranjangs.length !== 0 && (
-                    <Card className="overflow-auto ">
-                        <div class="row g-3">
-                            <div class="col-md-6">
-                                <h4>
-                                    <strong className="text-center">Daftar Pesanan</strong>
-                                </h4>
+            <div className="container-xxl x">
+                <h4>
+                    <strong className="text-center">Daftar Pesanan</strong>
+                </h4>
+                <section class="order" id="order">
+
+                    <h1 class="heading"> <span>order</span> now </h1>
+
+                    <div class="row">
+                        {keranjangs.length !== 0 && (
+                            <>
                                 <table class="table">
                                     <thead>
                                         <tr>
@@ -244,7 +262,7 @@ export default class Case1 extends Component {
                                     </thead>
                                     <tbody>
                                         {keranjangs.map((menuKeranjang, index) => (
-                                            <tr key={menuKeranjang.id} >
+                                            <tr key={menuKeranjang.id} onClick={() => this.handleShow(menuKeranjang)}>
                                                 <th scope="row">{index + 1}</th>
                                                 <td>{menuKeranjang.product.nama}</td>
                                                 <td>{menuKeranjang.jumlah}</td>
@@ -254,33 +272,26 @@ export default class Case1 extends Component {
                                         ))}
                                     </tbody>
                                 </table>
-                            </div>
-                            <div class="col-md-6">
-                                <form>
-                                    <h4>
-                                        <strong className="text-center">Detail Pesanan</strong>
-                                    </h4>
-                                    <div class="mb-3">
-                                        <label for="exampleInputEmail1" class="form-label">Nama</label>
-                                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value={this.state.nama} />
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="exampleInputPassword1" class="form-label">No.Meja</label>
-                                        <input type="text" class="form-control" id="exampleInputPassword1" value={this.state.no} />
-                                    </div>
+                                <form action="">
 
-                                    <h4>
-                                        <strong className="text-center">Informasi Tambahan</strong>
-                                    </h4>
-                                    <div class="mb-3">
-                                        <label for="exampleInputEmail1" class="form-label">Catatan</label>
-                                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Contoh : Pedes, Nasi Setengah" value={this.state.keterangan} />
-                                    </div>
+                                    <input type="submit" value="Next" class="btn" onClick={this.continue} />
+
                                 </form>
-                            </div>
-                        </div>
-                    </Card>
-                )}
+                                <ModalKeranjang
+                                    handleClose={this.handleClose}
+                                    {...this.state}
+                                    tambah={this.tambah}
+                                    kurang={this.kurang}
+                                    changeHandler={this.changeHandler}
+                                    handleSubmit={this.handleSubmit}
+                                    hapusPesanan={this.hapusPesanan}
+                                />
+                            </>
+                        )}
+
+                    </div>
+
+                </section>
             </div>
         );
     }

@@ -1,9 +1,10 @@
 import React, { Component } from "react";
-import Nama from "./Nama";
+import { Row, Col, Button } from 'react-bootstrap'
+import swal from "sweetalert";
+import Tab from "./Tab"
 
 const apiURL = "http://localhost:8000/users/";
-
-class NavBar extends Component {
+class Crud extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -20,8 +21,10 @@ class NavBar extends Component {
         // untuk Tampung data Update / New data
         id: 1,
         nama: "",
-        judul: "",
         deskripsi: "",
+        kontak: "",
+        Alamat: "",
+        web: "",
       },
     };
   }
@@ -119,7 +122,6 @@ class NavBar extends Component {
       DataUserNew: {
         id: 1,
         nama: "",
-        judul: "",
         deskripsi: "",
       },
     });
@@ -138,6 +140,13 @@ class NavBar extends Component {
   HendelSimpan = () => {
     if (this.state.isUpdate) {
       this.UpdateDataUser();
+      swal({
+        title: "Sukses Di Ubah",
+        text: "Berhasil Mengubah",
+        icon: "success",
+        button: false,
+        timer: 1500,
+      });
     } else {
       this.SaveNewDataUSer();
     }
@@ -153,30 +162,80 @@ class NavBar extends Component {
   render() {
     return (
       <div>
-        <header>
-          <a href="/" class="logo">{this.state.dataUser.map((dataUser) => {
-            return (
-              <Nama
-                key={dataUser.id}
-                data={dataUser}
-                update={this.HendelUpdate} // Pemanggilan Hendel Update
-              />
-            );
-          })}</a>
-          <div id="menu-bar" class="fas fa-bars"></div>
-          <nav class="navbar">
-            <a href="#home">home</a>
-            <a href="#speciality">speciality</a>
-            <a href="#popular">popular</a>
-            <a href="#gallery">gallery</a>
-            <a href="#review">review</a>
-            <a href="/stepper"><i class="fas fa-shopping-cart"></i></a>
-          </nav>
-        </header>
+        <div>
+          <div className="charts__right__title">
+            <div>
+              <h1>Setting Kontak</h1>
+              <p>Edit </p>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div>
+            <div className="mt-3">
+              <h4>
+                <form>
+                  <div className="form-group mb-1">
+                    <label htmlFor="text">Alamat </label>
+                    <input
+                      className="form-control"
+                      placeholder="Nama Toko..."
+                      type="text"
+                      id="alamat"
+                      name="alamat"
+                      onChange={this.HendelOnchange}
+                      value={this.state.DataUserNew.alamat}
+                    />
+                    <label htmlFor="text">kontak </label>
+                    <input
+                      className="form-control"
+                      placeholder="kontak"
+                      type="text"
+                      id="kontak"
+                      name="kontak"
+                      onChange={this.HendelOnchange}
+                      value={this.state.DataUserNew.kontak}
+                    />
+                  </div>
+                  <div className="form-group mb-3">
+                    <label>Website</label>
+                    <input
+                      className="form-control"
+                      placeholder="web..."
+                      id="web"
+                      name="web"
+                      onChange={this.HendelOnchange}
+                      value={this.state.DataUserNew.web}
+                    />
+                  </div>
+                  <Button
+                    variant="outline-dark"
+                    type="submit"
+                    style={{
+                      padding: "5px",
+                      borderRadius: "10px",
+                      float: "right",
+                    }}
+                    onClick={this.HendelSimpan}
+                  >
+                    <strong>Simpan</strong>
+                  </Button>
+                  {this.state.dataUser.map((dataUser) => {
+                    return (
+                      <Tab
+                        key={dataUser.id}
+                        data={dataUser}
+                        update={this.HendelUpdate} // Pemanggilan Hendel Update
+                      />
+                    );
+                  })}
+                </form>
+              </h4>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
-
-};
-
-export default NavBar;
+}
+export default Crud;

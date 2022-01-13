@@ -1,4 +1,14 @@
 {
+  "users": [
+    {
+      "id": 1,
+      "nama": "App Resto",
+      "deskripsi": "Tomorrow's business, I'll think about it tomorrow. If you think about it today, what are you thinking about tomorrow? It's better to think about the lunch menu now.",
+      "kontak": "Food Made With Love",
+      "alamat": "Jl. Pemuda Kel. Aspropati Kec. Semarang Barat Kota Semarang",
+      "web": "www.restoApp.com.//"
+    }
+  ],
   "categories": [
     {
       "id": 1,
@@ -339,6 +349,29 @@
         }
       ],
       "id": 7
+    },
+    {
+      "total_bayar": 1900000,
+      "menus": [
+        {
+          "jumlah": 1,
+          "total_harga": 1900000,
+          "product": {
+            "id": 1,
+            "kode": "Dengan Daging Wagyu A5 Di Iris Secara Teratur Menggunakan Taburan  Bumbu yang bukan maen",
+            "nama": "Steak",
+            "harga": 1900000,
+            "is_ready": true,
+            "gambar": "Steak.jpg",
+            "category": {
+              "id": 1,
+              "nama": "Makanan"
+            }
+          },
+          "id": 1
+        }
+      ],
+      "id": 8
     }
   ]
 }

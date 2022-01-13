@@ -14,7 +14,7 @@ export default class TotalBayar extends Component {
     }
 
     axios.post(API_URL + "pesanans", pesanan).then((res) => {
-      this.props.history.push('/sukses')
+      this.props.history.href('/sukses')
     })
   };
 

@@ -4,7 +4,7 @@ import {
   Switch,
   Route,
 } from "react-router-dom";
-import { NavbarComponent, Footer, Hasil } from './components'
+import { NavbarComponent, Footer, Hasil, Login } from './components'
 import { Home, Sukses, Stepper, Admin } from './pages'
 
 export default class App extends Component {
@@ -19,6 +19,7 @@ export default class App extends Component {
             <Route path="/hasil" component={Hasil} exact />
             <Route path="/stepper" component={Stepper} exact />
             <Route path="/admin" component={Admin} exact />
+            <Route path="/login" component={Login} exact />
           </Switch>
         </main>
         <Footer />
